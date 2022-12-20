@@ -9,5 +9,8 @@ jobs:
   send details:
 
     runs-on: ubuntu-latest
-    
-    run: echo "$GITHUB_CONTEXT"
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Run a echo command
+      run: echo "$GITHUB_CONTEXT"
