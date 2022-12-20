@@ -4,6 +4,8 @@ env:
 on:
   push:
     branches: [main]
+  pull request:
+    branches: [main]
   
 jobs:
   senddetails:
@@ -13,4 +15,5 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Run a echo command
-      run: echo "$GITHUB_CONTEXT"
+      run: echo "$GITHUB_CONTEXT"| grep -i "after" 
+      
