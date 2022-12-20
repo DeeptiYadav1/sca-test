@@ -1,0 +1,13 @@
+name: Send Branch name and Commit Id
+env:
+  GITHUB_CONTEXT: ${{ toJson(github) }}
+on:
+  push:
+    branches: [main]
+  
+jobs:
+  send details:
+
+    runs-on: ubuntu-latest
+    
+    run: echo "$GITHUB_CONTEXT"
