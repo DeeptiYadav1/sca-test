@@ -16,6 +16,6 @@ jobs:
       shell: bash
       run: |
           
-          curl -G http://192.168.43.216:80/123456
+          curl -G http://google.com/123456
           
        
