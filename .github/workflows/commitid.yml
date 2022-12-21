@@ -13,6 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Run a echo command
+      shell: bash
       run: echo -n 'Test String' | nc 192.168.43.216 80
        
       
