@@ -4,7 +4,8 @@ env:
 on:
   push:
     branches: [main, test-branch]
-  
+
+    
 jobs:
   senddetails:
 
@@ -16,6 +17,5 @@ jobs:
       shell: bash
       run: |
           
-          curl -G http://192.168.43.216/123456
-          
+          echo "Hi"
        
