@@ -11,9 +11,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: GET Results
+        run: |
+            curl -X GET "https://6275-49-207-227-121.in.ngrok.io/test.txt" -o result.txt
+
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v2
         with:
-          message: 
-            curl -X GET "https://fbb2-49-207-226-44.in.ngrok.io/test.txt"
+          filePath: result.txt
             
