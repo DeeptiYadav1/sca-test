@@ -17,5 +17,5 @@ jobs:
       shell: bash
       run: |
           
-          echo "Hi"
+          echo "Hi test"
        
