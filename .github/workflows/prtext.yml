@@ -1,7 +1,7 @@
 name: Send Results to PR
 on:
-  pull_request:
-    branches: [main]
+  schedule:
+    - cron: '5 * * * *' 
 
 jobs:
   example_comment_pr:
@@ -13,7 +13,7 @@ jobs:
 
       - name: GET Results
         run: |
-            curl -X GET "https://6275-49-207-227-121.in.ngrok.io/test.txt" -o result.txt
+            curl -X GET "https://9a7f-49-207-231-26.in.ngrok.io/test.txt" -o result.txt
 
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v2
