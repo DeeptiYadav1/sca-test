@@ -1,5 +1,7 @@
 name: Send Results to PR
 on:
+  pull_request:
+    branches: [main]
   schedule:
     - cron: '*/5 * * * *' 
 
