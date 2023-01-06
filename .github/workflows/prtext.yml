@@ -14,7 +14,7 @@ jobs:
 
       - name: GET Results
         run: |
-            curl --retry 10 --retry-delay 5 -f --retry-all-errors -X GET 'https://788a-49-207-209-105.in.ngrok.io/test.txt' -o result.txt
+            curl --retry 10 --retry-delay 5 -f --retry-all-errors -X GET 'https://a114-49-207-209-105.in.ngrok.io/test.txt' -o result.txt
 
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v2
