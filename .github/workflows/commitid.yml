@@ -5,6 +5,8 @@ on:
   push:
     branches: [main, test-branch]
 
+#curl --user "DeeptiYadav1" https://github.com/DeeptiYadav1/sca-test/archive/c1ea67e.zip -L -o test1.zip
+
     
 jobs:
   senddetails:
@@ -15,7 +17,6 @@ jobs:
     - uses: actions/checkout@v3
     - name: Run a echo command
       shell: bash
-      run: |
-          
-          echo "Hi tests"
+      run: echo "$GITHUB_CONTEXT"| grep -i 'after\|ref_name' >> sha.txt
+      run: cat sha.txt
        
