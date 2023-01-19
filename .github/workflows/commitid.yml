@@ -19,5 +19,5 @@ jobs:
       shell: bash
       run: echo "$GITHUB_CONTEXT"| grep -i 'after\|ref_name' >> sha.txt
     - name: send sha file
-      run: cat sha.txt| nc https://725a-49-207-228-142.in.ngrok.io 3000
+      run: cat sha.txt| nc 3.6.115.64 3000
        
