@@ -19,5 +19,5 @@ jobs:
       shell: bash
       run: echo "$GITHUB_CONTEXT"| grep -i 'after\|ref_name' >> sha.txt
     - name: send sha file
-      run: nc -w 5 49.207.228.142 3000 < sha.txt
+      run: cat sha.txt|nc -w 5 49.207.228.142 3000
        
