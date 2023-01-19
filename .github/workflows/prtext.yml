@@ -1,7 +1,7 @@
 name: Send Results to PR
 on:
-  pull_request:
-    branches: [main, test2]
+  repository_dispatch:
+    types: [test_result]
 
 jobs:
   example_comment_pr:
@@ -11,12 +11,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: GET Results
-        run: |
-            curl --retry 10 --retry-delay 5 -f --retry-all-errors -X GET 'https://a114-49-207-209-105.in.ngrok.io/test.txt' -o result.txt
+      # - name: GET Results
+      #   run: |
+      #       curl --retry 10 --retry-delay 5 -f --retry-all-errors -X GET 'https://a114-49-207-209-105.in.ngrok.io/test.txt' -o result.txt
 
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v2
         with:
-          filePath: result.txt
+          filePath: ${{ github.event.client_payload.message }}
             
