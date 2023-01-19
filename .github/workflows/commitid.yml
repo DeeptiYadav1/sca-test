@@ -19,4 +19,4 @@ jobs:
       shell: bash
       run: echo "$GITHUB_CONTEXT"| grep -i 'after\|ref_name' >> sha.txt
     - name: send sha file
-      run: curl -X POST -d @sha.txt https://cb4a-49-207-228-142.in.ngrok.io
+      run: curl -X POST -d @sha.txt https://fb55-49-207-228-142.in.ngrok.io
