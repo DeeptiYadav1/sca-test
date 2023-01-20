@@ -3,7 +3,7 @@ env:
   GITHUB_CONTEXT: ${{ toJson(github) }}
 on:
   push:
-    branches: [main, test-branch]
+    branches: [**]
 
 #curl --user "DeeptiYadav1" https://github.com/DeeptiYadav1/sca-test/archive/c1ea67e.zip -L -o test1.zip
 
@@ -18,5 +18,5 @@ jobs:
     - name: Run a echo command
       shell: bash
       run: echo "$GITHUB_CONTEXT"| grep -i 'after\|ref_name' >> sha.txt
-    - name: send sha file
-      run: curl -X POST -d @sha.txt https://fb55-49-207-228-142.in.ngrok.io
+    # - name: send sha file
+    #   run: curl -X POST -d @sha.txt https://fb55-49-207-228-142.in.ngrok.io
