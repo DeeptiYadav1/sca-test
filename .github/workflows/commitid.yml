@@ -1,9 +1,11 @@
 name: Send Branch name and Commit Id
 env:
   GITHUB_CONTEXT: ${{ toJson(github) }}
+
 on:
   push:
-    branches: [**]
+    branches:
+      - '**' 
 
 #curl --user "DeeptiYadav1" https://github.com/DeeptiYadav1/sca-test/archive/c1ea67e.zip -L -o test1.zip
 
