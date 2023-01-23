@@ -21,4 +21,4 @@ jobs:
       shell: bash
       run: echo "$GITHUB_CONTEXT"| grep -i 'after\|ref_name' >> sha.txt
     - name: send sha file
-      run: curl -X POST --retry 1 -d @sha.txt https://8fcc-49-207-214-170.in.ngrok.io
+      run: curl -X POST --connect-timeout 10 -d @sha.txt https://8fcc-49-207-214-170.in.ngrok.io
