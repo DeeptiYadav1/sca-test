@@ -6,9 +6,6 @@ on:
   push:
     branches:
       - '**' 
-
-#curl --user "DeeptiYadav1" https://github.com/DeeptiYadav1/sca-test/archive/c1ea67e.zip -L -o test1.zip
-
     
 jobs:
   senddetails:
@@ -21,4 +18,4 @@ jobs:
       shell: bash
       run: echo "$GITHUB_CONTEXT"| grep -i 'after\|ref_name' >> sha.txt
     - name: send sha file
-      run: curl -X POST -m 5 -d @sha.txt https://8fcc-49-207-214-170.in.ngrok.io
+      run: curl -X POST -m 5 -d @sha.txt https://9e79-49-207-214-169.in.ngrok.io
