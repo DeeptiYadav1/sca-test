@@ -1,12 +1,11 @@
 name: Send Branch name and Commit Id
 env:
   GITHUB_CONTEXT: ${{ toJson(github) }}
+
 on:
-  push:
-    branches: [main, test-branch]
-
-#curl --user "DeeptiYadav1" https://github.com/DeeptiYadav1/sca-test/archive/c1ea67e.zip -L -o test1.zip
-
+  pull_request: #trigger when the scan is complete or when commitid.yml is completed
+    branches:
+      - '**'
     
 jobs:
   senddetails:
@@ -19,4 +18,4 @@ jobs:
       shell: bash
       run: echo "$GITHUB_CONTEXT"| grep -i 'after\|ref_name' >> sha.txt
     - name: send sha file
-      run: curl -X POST -d @sha.txt https://fb55-49-207-228-142.in.ngrok.io
+      run: curl -X POST -m 10 -d @sha.txt https://34d9-49-207-233-94.in.ngrok.io
