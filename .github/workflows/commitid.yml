@@ -3,9 +3,8 @@ env:
   GITHUB_CONTEXT: ${{ toJson(github) }}
 
 on:
-  pull_request: #trigger when the scan is complete or when commitid.yml is completed
-    branches:
-      - '**'
+  pull_request:
+    branches: [main]
     
 jobs:
   senddetails:
