@@ -20,14 +20,14 @@ jobs:
       # run: curl -X POST -m 10 -d @sha.json https://34d9-49-207-233-94.in.ngrok.io test
       run: curl -X POST -H "Content-Type:application/json" -d @s.json  https://c2bd-2409-4042-4e1f-a89a-2123-daf1-9cc0-2735.in.ngrok.io/commit
 
-  sleepfor10:
+  # sleepfor10:
 
-    runs-on: ubuntu-latest
+  #   runs-on: ubuntu-latest
 
-    steps:
-    - name: Run a echo command
-      shell: bash
-      run: sleep 300
+  #   steps:
+  #   - name: Run a echo command
+  #     shell: bash
+  #     run: sleep 300
 
 
   # fetchdetails: #api creation
