@@ -3,7 +3,7 @@ env:
   GITHUB_CONTEXT: ${{ toJson(github) }}
 
 on:
-  push:
+  pull request:
     branches: [main, test-branch]
     
 jobs:
@@ -31,22 +31,26 @@ jobs:
     #   # run: curl -X POST -m 10 -d @sha.json https://34d9-49-207-233-94.in.ngrok.io
     #   run: curl -X POST -H "Content-Type:application/json" -d @s.json  https://e36a-2409-4042-4e1f-a89a-d822-d0d9-2168-540d.in.ngrok.io/commit
 
-  # sleepfor10:
+  sleepfor10:
 
-  #   runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-    # steps:
-    # - name: Run a echo command
-    #   shell: bash
-    #   run: sleep 300
+    steps:
+    - name: Run a echo command
+      shell: bash
+      run: sleep 60s
 
 
-  # fetchdetails: #api creation
+  fetchresults:
 
-  #   runs-on:
+    runs-on:
     
-  #   steps:
-  #    - name: fetch results from api
+    steps:
+    - name: fetch results from api
+      shell: bash
+      run: |
+       curl -X GET --retry 3 --retry-delay 3 https://e36a-2409-4042-4e1f-a89a-d822-d0d9-2168-540d.in.ngrok.io/commit/{{A}} >> result.txt
+       cat result.txt
   #      run: curl -X GET --retry 10 --retry-delay 5 https://api/get_results/$SHA >> url.txt
   #      run: grep -i
   #      run: cur
