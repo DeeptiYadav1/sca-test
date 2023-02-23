@@ -31,17 +31,15 @@ jobs:
     #   # run: curl -X POST -m 10 -d @sha.json https://34d9-49-207-233-94.in.ngrok.io
     #   run: curl -X POST -H "Content-Type:application/json" -d @s.json  https://e36a-2409-4042-4e1f-a89a-d822-d0d9-2168-540d.in.ngrok.io/commit
 
-  sleepfor10:
+  # sleepfor10:
 
-    runs-on: ubuntu-latest
+  #   runs-on: ubuntu-latest
 
-    steps:
-    - name: Run a echo command
-      shell: bash
-      run: |
-       sleep 60s
-
-
+  #   steps:
+  #   - name: Run a echo command
+  #     shell: bash
+  #     run: |
+       
   fetchresults:
 
     runs-on: ubuntu-latest
@@ -51,8 +49,10 @@ jobs:
     - name: fetch results from api
       shell: bash
       run: |
+       sleep 60s
        export A=$(echo "$GITHUB_CONTEXT"| grep -i 'after'| awk '{print substr($2,2,length($2)-3)}')
-       curl -X GET --retry 3 --retry-delay 3 https://e36a-2409-4042-4e1f-a89a-d822-d0d9-2168-540d.in.ngrok.io/commit/{{A}} >> result.txt
+       echo $A
+       curl -X GET --retry 3 --retry-delay 3 'https://e36a-2409-4042-4e1f-a89a-d822-d0d9-2168-540d.in.ngrok.io/commit/'"${A}" >> result.txt
        cat result.txt
   
 
