@@ -39,20 +39,21 @@ jobs:
     - name: Run a echo command
       shell: bash
       run: |
-       sleep 10s
-       echo $A
+       sleep 60s
 
 
-  # fetchresults:
+  fetchresults:
 
-  #   runs-on:
+    runs-on:
     
-  #   steps:
-  #   - name: fetch results from api
-  #     shell: bash
-  #     run: |
-  #      curl -X GET --retry 3 --retry-delay 3 https://e36a-2409-4042-4e1f-a89a-d822-d0d9-2168-540d.in.ngrok.io/commit/{{A}} >> result.txt
-  #      cat result.txt
+    steps:
+    - uses: actions/checkout@v3
+    - name: fetch results from api
+      shell: bash
+      run: |
+       export A=$(echo "$GITHUB_CONTEXT"| grep -i 'after'| awk '{print substr($2,2,length($2)-3)}')
+       curl -X GET --retry 3 --retry-delay 3 https://e36a-2409-4042-4e1f-a89a-d822-d0d9-2168-540d.in.ngrok.io/commit/{{A}} >> result.txt
+       cat result.txt
   
 
   #    - name: Comment PR
