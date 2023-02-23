@@ -12,10 +12,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # - uses: actions/checkout@v3
+    - uses: actions/checkout@v3
     - name: Run a echo command
       shell: bash
       run: echo "A=$(echo "$GITHUB_CONTEXT"| grep -i 'after'| awk '{print substr($2,2,length($2)-3)}')" 
+    - name: Create sha file
       run: echo "sha:${A}" >> s.json
     - name: send sha files
       # run: curl -X POST -m 10 -d @sha.json https://34d9-49-207-233-94.in.ngrok.io
@@ -25,10 +26,10 @@ jobs:
 
   #   runs-on: ubuntu-latest
 
-  #   steps:
-  #   - name: Run a echo command
-  #     shell: bash
-  #     run: sleep 300
+    # steps:
+    # - name: Run a echo command
+    #   shell: bash
+    #   run: sleep 300
 
 
   # fetchdetails: #api creation
