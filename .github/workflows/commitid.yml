@@ -16,7 +16,8 @@ jobs:
     - name: send data
       shell: bash
       run: |
-       echo "A=$(echo "$GITHUB_CONTEXT"| grep -i 'after'| awk '{print substr($2,2,length($2)-3)}')" >> $GITHUB_ENV
+       export A=$(echo "$GITHUB_CONTEXT"| grep -i 'after'| awk '{print substr($2,2,length($2)-3)}')
+       echo $A
        echo "sha:${A}" >> s.json
        cat s.json
        curl -X POST -H "Content-Type:application/json" -d @s.json  https://e36a-2409-4042-4e1f-a89a-d822-d0d9-2168-540d.in.ngrok.io/commit
