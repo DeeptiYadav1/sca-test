@@ -38,7 +38,9 @@ jobs:
     steps:
     - name: Run a echo command
       shell: bash
-      run: sleep 60s
+      run: |
+       sleep 10s
+       echo $A
 
 
   # fetchresults:
