@@ -3,7 +3,7 @@ env:
   GITHUB_CONTEXT: ${{ toJson(github) }}
 
 on:
-  pull request:
+  push:
     branches: [main, test-branch]
     
 jobs:
