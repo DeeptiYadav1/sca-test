@@ -49,7 +49,7 @@ jobs:
     - name: fetch results from api
       shell: bash
       run: |
-       sleep 30s
+       sleep 80s
        export A=$(echo "$GITHUB_CONTEXT"| grep -i 'after'| awk '{print substr($2,2,length($2)-3)}')
        echo $A
        curl -X GET --retry 10 --retry-delay 5 'https://10d0-2409-4042-4e1f-a89a-d822-d0d9-2168-540d.in.ngrok.io/commit/'"${A}" >> result.txt
