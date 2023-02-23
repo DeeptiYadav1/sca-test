@@ -41,16 +41,16 @@ jobs:
       run: sleep 60s
 
 
-  fetchresults:
+  # fetchresults:
 
-    runs-on:
+  #   runs-on:
     
-    steps:
-    - name: fetch results from api
-      shell: bash
-      run: |
-       curl -X GET --retry 3 --retry-delay 3 https://e36a-2409-4042-4e1f-a89a-d822-d0d9-2168-540d.in.ngrok.io/commit/{{A}} >> result.txt
-       cat result.txt
+  #   steps:
+  #   - name: fetch results from api
+  #     shell: bash
+  #     run: |
+  #      curl -X GET --retry 3 --retry-delay 3 https://e36a-2409-4042-4e1f-a89a-d822-d0d9-2168-540d.in.ngrok.io/commit/{{A}} >> result.txt
+  #      cat result.txt
   
 
   #    - name: Comment PR
