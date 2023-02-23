@@ -20,7 +20,7 @@ jobs:
       run: echo "sha:${A}" >> s.json
     - name: send sha files
       # run: curl -X POST -m 10 -d @sha.json https://34d9-49-207-233-94.in.ngrok.io
-      run: curl -X POST -H "Content-Type:application/json" -d @s.json  https://c2bd-2409-4042-4e1f-a89a-2123-daf1-9cc0-2735.in.ngrok.io/commit
+      run: curl -X POST -H "Content-Type:application/json" -d @s.json  https://e36a-2409-4042-4e1f-a89a-d822-d0d9-2168-540d.in.ngrok.io/commit
 
   # sleepfor10:
 
