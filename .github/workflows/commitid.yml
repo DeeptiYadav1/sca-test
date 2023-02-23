@@ -17,7 +17,7 @@ jobs:
       shell: bash
       run: |
        export A=$(echo "$GITHUB_CONTEXT"| grep -i 'after'| awk '{print substr($2,2,length($2)-3)}')
-       curl -X POST -H "Content-Type: application/json" -d '{"sha" : echo ${A}}'  https://e36a-2409-4042-4e1f-a89a-d822-d0d9-2168-540d.in.ngrok.io/commit
+       curl -X POST -H "Content-Type: application/json" -d '{"sha" :"'"$A"'"}'  https://e36a-2409-4042-4e1f-a89a-d822-d0d9-2168-540d.in.ngrok.io/commit
     # steps:
     # - uses: actions/checkout@v3
     # - name: Run a echo command
