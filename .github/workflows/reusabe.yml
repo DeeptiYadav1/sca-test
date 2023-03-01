@@ -30,9 +30,7 @@ jobs:
       env:
           SHA: ${{ inputs.shavalue }}
       run: |
-       export A=echo $SHA
-       echo $A
-  #      curl -X POST -H "Content-Type: application/json" -d '{"sha" :"'"$A"'"}'  https://d11c-2409-4042-4e1f-a89a-d822-d0d9-2168-540d.in.ngrok.io/commit
+       curl -X POST -H "Content-Type: application/json" -d '{"sha" :"'"$SHA"'"}'  https://39ab-2409-4042-4e17-ebad-4d82-595c-7437-ad68.in.ngrok.io/commit
 
 
   # fetchresults:
