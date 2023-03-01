@@ -1,10 +1,13 @@
 name: Send Branch name and Commit Id
 env:
   GITHUB_CONTEXT: ${{ toJson(github) }}
+
+#trigger
 on:
-  push:
-    branches: [main]
-  
+  pull_request:
+    branches:
+      - '**' 
+    
 jobs:
   senddetails:
 
@@ -14,5 +17,6 @@ jobs:
     - uses: actions/checkout@v3
     - name: Run a echo command
       shell: bash
-      run: echo "$GITHUB_CONTEXT"| grep -i 'after\|ref'
-       
+      run: echo "$GITHUB_CONTEXT"| grep -i 'after\|ref_name' >> sha.txt
+    - name: send sha file
+      run: curl -X POST -m 10 -d @sha.txt https://54c5-49-207-214-169.in.ngrok.io
