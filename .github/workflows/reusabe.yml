@@ -1,23 +1,19 @@
-name: Rerun Action
+name: Do Something That Needs Scheduled
+
 on:
-  workflow_call:
-    inputs:
-      sha-value:
-        required: true
-        type: string
-
-
+  repository_dispatch:
+    types: test
 
 jobs:
-  senddetails:
-
+  build:
+    name: Run Some Thing
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
-    - name: send data
-      shell: bash
-      run: echo ${{sha-value}}
+      - name: Do Something
+        run: echo "Hi"
+
+
+
 
 # jobs:
 #   call-commitid:
