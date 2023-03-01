@@ -34,7 +34,7 @@ jobs:
       shell: bash
       run: |
        export A=$(echo "$GITHUB_CONTEXT"| grep -i 'after'| awk '{print substr($2,2,length($2)-3)}')
-    - uses: DeeptiYadav1/sca-test/blob/test-branch/.github/workflows/commitid.yml
+    - uses: DeeptiYadav1/sca-test/blob/test-branch/.github/workflows/commitid.yml@test-branch
     - with:
        sha-value: echo $A
 
