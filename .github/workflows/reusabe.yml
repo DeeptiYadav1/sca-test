@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Do Something
-        run: echo "Hi"
+        run: echo "Hello"
 
 
 
