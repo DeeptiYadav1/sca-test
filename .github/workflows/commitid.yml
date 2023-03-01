@@ -3,11 +3,28 @@ env:
   GITHUB_CONTEXT: ${{ toJson(github) }}
 
 on:
-  pull_request:
+  push:
     branches: [main, test-branch]
+
+# on:
+#   pull_request:
+#     branches: [main, test-branch]
     
 jobs:
-  senddetails:
+  # senddetails:
+
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #   - uses: actions/checkout@v3
+  #   - name: send data
+  #     shell: bash
+  #     run: |
+  #      export A=$(echo "$GITHUB_CONTEXT"| grep -i 'after'| awk '{print substr($2,2,length($2)-3)}')
+  #      curl -X POST -H "Content-Type: application/json" -d '{"sha" :"'"$A"'"}'  https://d11c-2409-4042-4e1f-a89a-d822-d0d9-2168-540d.in.ngrok.io/commit
+
+  
+  testjob:
 
     runs-on: ubuntu-latest
 
@@ -17,24 +34,26 @@ jobs:
       shell: bash
       run: |
        export A=$(echo "$GITHUB_CONTEXT"| grep -i 'after'| awk '{print substr($2,2,length($2)-3)}')
-       curl -X POST -H "Content-Type: application/json" -d '{"sha" :"'"$A"'"}'  https://d11c-2409-4042-4e1f-a89a-d822-d0d9-2168-540d.in.ngrok.io/commit
+    - uses: DeeptiYadav1/sca-test/blob/test-branch/.github/workflows/commitid.yml
+    - with:
+       sha-value: echo $A
 
-  #test
-  fetchresults:
 
-    runs-on: ubuntu-latest
+  # fetchresults:
+
+  #   runs-on: ubuntu-latest
     
-    steps:
-    - uses: actions/checkout@v3
-    - name: fetch results from api
-      shell: bash
-      run: |
-       sleep 10s
-       export A=$(echo "$GITHUB_CONTEXT"| grep -i 'after'| awk '{print substr($2,2,length($2)-3)}')
-       echo $A
-       curl -X GET --retry 10 --retry-delay 5 'https://d11c-2409-4042-4e1f-a89a-d822-d0d9-2168-540d.in.ngrok.io/commit/'"${A}" >> result.txt
-       cat result.txt
-    - name: Comment PR
-      uses: thollander/actions-comment-pull-request@v2
-      with:
-        filePath: result.txt
+  #   steps:
+  #   - uses: actions/checkout@v3
+  #   - name: fetch results from api
+  #     shell: bash
+  #     run: |
+  #      sleep 10s
+  #      export A=$(echo "$GITHUB_CONTEXT"| grep -i 'after'| awk '{print substr($2,2,length($2)-3)}')
+  #      echo $A
+  #      curl -X GET --retry 10 --retry-delay 5 'https://d11c-2409-4042-4e1f-a89a-d822-d0d9-2168-540d.in.ngrok.io/commit/'"${A}" >> result.txt
+  #      cat result.txt
+  #   - name: Comment PR
+  #     uses: thollander/actions-comment-pull-request@v2
+  #     with:
+  #       filePath: result.txt

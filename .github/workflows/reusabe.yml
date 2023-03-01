@@ -1,0 +1,48 @@
+name: Rerun Action
+on:
+  workflow_call:
+    inputs:
+      sha-value:
+        required: true
+        type: string
+
+
+
+jobs:
+  senddetails:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: send data
+      shell: bash
+      run: echo ${{sha-value}}
+
+# jobs:
+#   call-commitid:
+#     uses: DeeptiYadav1/sca-test/blob/test-branch/.github/workflows/commitid.yml
+    #set a 5 minute timer 
+  
+
+
+    #sending commit id to scanner server
+    #server creating the results
+    #prtext.yml should be triggered with the corresponding results for each repo
+
+
+    Palatir
+
+
+    main    <-   test /reusable.yml
+    main    <-   test2
+
+
+    #commitid triggered at t-0 for test1 PR
+    #set 5 mins
+    #invoking prtext
+
+    #TO DO:
+    #Triggering both actions on PR
+    #
+    
