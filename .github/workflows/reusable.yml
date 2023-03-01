@@ -1,8 +1,8 @@
-name: Do Something That Needs Scheduled
+name: Do Something
 
 on:
-  repository_dispatch:
-    types: test
+  workflow_dispatch:
+    
 
 jobs:
   build:
