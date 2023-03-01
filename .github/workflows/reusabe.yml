@@ -2,6 +2,11 @@ name: Do Something That Needs Scheduled
 
 on:
   workflow_dispatch:
+    inputs:
+      shavalue:
+        description: 'sha-value'
+        required: true
+        type: string
   
 
 jobs:
@@ -9,9 +14,11 @@ jobs:
     name: Run Some Thing
     runs-on: ubuntu-latest
     steps:
-      - name: Do Something
-        run: echo "Hello"
-
+      - run: |
+          echo "SHA Value: $SHA"
+        env:
+          SHA: ${{ inputs.shavalue }}
+          
 
 
 
