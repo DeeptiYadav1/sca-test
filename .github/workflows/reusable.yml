@@ -1,0 +1,13 @@
+name: Do Something
+
+on:
+  workflow_dispatch:
+    
+
+jobs:
+  build:
+    name: Run Some Thing
+    runs-on: ubuntu-latest
+    steps:
+      - name: Do Something
+        run: echo "Hi"
