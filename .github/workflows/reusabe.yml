@@ -7,50 +7,50 @@ on:
         description: 'sha-value'
         required: true
         type: string
+      prnumber:
+        description: 'pr-number'
+        required: true
+        type: int
+
   
 
 jobs:
-  # build:
-  #   name: Run Some Thing
+
+  # senddetails:
+
   #   runs-on: ubuntu-latest
+
   #   steps:
-  #     - run: |
-  #         echo "SHA Value: $SHA"
-  #       env:
+  #   - uses: actions/checkout@v3
+  #   - name: send data
+  #     shell: bash
+  #     env:
   #         SHA: ${{ inputs.shavalue }}
-          
-  senddetails:
+  #     run: |
+  #      curl -X POST -H "Content-Type: application/json" -d '{"sha" :"'"$SHA"'"}'  https://39ab-2409-4042-4e17-ebad-4d82-595c-7437-ad68.in.ngrok.io/commit
+
+
+  fetchresults:
 
     runs-on: ubuntu-latest
-
+    
     steps:
     - uses: actions/checkout@v3
-    - name: send data
+    - name: fetch results from api
       shell: bash
       env:
           SHA: ${{ inputs.shavalue }}
       run: |
-       curl -X POST -H "Content-Type: application/json" -d '{"sha" :"'"$SHA"'"}'  https://39ab-2409-4042-4e17-ebad-4d82-595c-7437-ad68.in.ngrok.io/commit
+       sleep 10s
+       curl -X GET --retry 10 --retry-delay 5 'https://d11c-2409-4042-4e1f-a89a-d822-d0d9-2168-540d.in.ngrok.io/commit/'"${SHA}" >> result.txt
+       cat result.txt
+    - name: Comment PR
+      uses: thollander/actions-comment-pull-request@v2
+      with:
+        filePath: result.txt
+        pr_number: ${{ inputs.prnumber }}
+        
 
-
-  # fetchresults:
-
-  #   runs-on: ubuntu-latest
-    
-  #   steps:
-  #   - uses: actions/checkout@v3
-  #   - name: fetch results from api
-  #     shell: bash
-  #     run: |
-  #      sleep 10s
-  #      export A=$(echo "$GITHUB_CONTEXT"| grep -i 'after'| awk '{print substr($2,2,length($2)-3)}')
-  #      echo $A
-  #      curl -X GET --retry 10 --retry-delay 5 'https://d11c-2409-4042-4e1f-a89a-d822-d0d9-2168-540d.in.ngrok.io/commit/'"${A}" >> result.txt
-  #      cat result.txt
-  #   - name: Comment PR
-  #     uses: thollander/actions-comment-pull-request@v2
-  #     with:
-  #       filePath: result.txt
 
 
 
