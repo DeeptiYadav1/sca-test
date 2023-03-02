@@ -41,8 +41,8 @@ jobs:
       env:
           SHA: ${{ inputs.shavalue }}
       run: |
-       sleep 10s
-       curl -X GET --retry 10 --retry-delay 5 ' https://16d7-2409-4042-4e17-ebad-a405-b8a8-29ff-3aff.in.ngrok.io/commit/'"${SHA}" >> result.txt
+       sleep 5s
+       curl -X GET --retry 10 --retry-delay 5 'https://16d7-2409-4042-4e17-ebad-a405-b8a8-29ff-3aff.in.ngrok.io/commit/'"${SHA}" >> result.txt
        cat result.txt
     - name: Comment PR
       uses: thollander/actions-comment-pull-request@v2
