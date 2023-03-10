@@ -18,7 +18,13 @@ jobs:
     - name: send data
       shell: bash
       run: | 
-       echo "$GITHUB_CONTEXT"
+       export SHA=$(echo "$GITHUB_CONTEXT"| grep -i 'after'| awk '{print substr($2,2,length($2)-3)}')
+       export PR=$(echo "$GITHUB_CONTEXT"| grep -i '"number":'| awk '{print substr($4,1,length($4)-1)}'
+       export REPO=$(echo "$GITHUB_CONTEXT"| grep -i '"name":'|  awk '{print substr($2,2,length($2)-3)}'
+       echo $SHA
+       echo $PR
+       echo $REPO
+       echo $GITHUB_CONTEXT
        
 
 #  export An=$(echo "$GITHUB_CONTEXT"| grep -i '"number":'| awk '{print substr($2,2,length($2)-3)}')
@@ -37,8 +43,8 @@ jobs:
   #       sleep 10s
   #       export SHA=$(echo "$GITHUB_CONTEXT"| grep -i 'after'| awk '{print substr($2,2,length($2)-3)}')
   #       export PR=$(echo "$GITHUB_CONTEXT"| grep -i '"number":'| awk '{print substr($4,1,length($4)-1)}'
+  #       export REPO=$(echo "$GITHUB_CONTEXT"| grep -i '"name":'|  awk '{print substr($2,2,length($2)-3)}'  
   #       export BRANCH=
-  #       export REPO=
   #       curl -X GET --retry 10 --retry-delay 5 'https://d11c-2409-4042-4e1f-a89a-d822-d0d9-2168-540d.in.ngrok.io/commit/'"${A}" >> result.txt
   #       cat result.txt
   #    - name: Comment PR
