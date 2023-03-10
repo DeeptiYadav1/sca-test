@@ -1,4 +1,4 @@
-name: Do Something That Needs Scheduled
+name: Retry Get Results Request
 
 on:
   workflow_dispatch:
@@ -16,20 +16,6 @@ on:
 
 jobs:
 
-  # senddetails:
-
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #   - uses: actions/checkout@v3
-  #   - name: send data
-  #     shell: bash
-  #     env:
-  #         SHA: ${{ inputs.shavalue }}
-  #     run: |
-  #      curl -X POST -H "Content-Type: application/json" -d '{"sha" :"'"$SHA"'"}'  https://39ab-2409-4042-4e17-ebad-4d82-595c-7437-ad68.in.ngrok.io/commit
-
-
   fetchresults:
 
     runs-on: ubuntu-latest
@@ -42,7 +28,7 @@ jobs:
           SHA: ${{ inputs.shavalue }}
       run: |
        sleep 5s
-       curl -X GET --retry 10 --retry-delay 5 'https://16d7-2409-4042-4e17-ebad-a405-b8a8-29ff-3aff.in.ngrok.io/commit/'"${SHA}" >> result.txt
+       curl -X GET --retry 10 --retry-delay 5 'https://1a5b-2405-201-20-caf-5574-63e3-2550-57dd.in.ngrok.io/commit/'"${SHA}" >> result.txt
        cat result.txt
     - name: Comment PR
       uses: thollander/actions-comment-pull-request@v2
