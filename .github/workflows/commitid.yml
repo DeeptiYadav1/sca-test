@@ -19,12 +19,13 @@ jobs:
       shell: bash
       run: | 
        export SHA=$(echo "$GITHUB_CONTEXT"| grep -i 'after'| awk '{print substr($2,2,length($2)-3)}')
-       export PR=$(echo "$GITHUB_CONTEXT"| grep -i '"number":'| awk '{print substr($4,1,length($4)-1)}')
-       export REPO=$(echo "$GITHUB_CONTEXT"| grep -i '"name":'|  awk '{print substr($2,2,length($2)-3)}')
+      #  export PR=$(echo "$GITHUB_CONTEXT"| grep -i '"number":'| awk '{print substr($4,1,length($4)-1)}')
+      #  export REPO=$(echo "$GITHUB_CONTEXT"| grep -i '"name":'|  awk '{print substr($2,2,length($2)-3)}')
+      #  echo $SHA
+      #  echo $PR
+      #  echo $REPO
        echo $SHA
-       echo $PR
-       echo $REPO
-       echo $GITHUB_CONTEXT
+
        
 
 #  export An=$(echo "$GITHUB_CONTEXT"| grep -i '"number":'| awk '{print substr($2,2,length($2)-3)}')
