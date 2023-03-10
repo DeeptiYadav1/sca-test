@@ -18,7 +18,7 @@ jobs:
     - name: send data
       shell: bash
       run: |
-       export PR=$(echo "$GITHUB_CONTEXT"| grep -m 1 -i '"number":'| awk '{print substr($2,2,length($2)-3)}')
+       export PR=$(echo "$GITHUB_CONTEXT"| grep -m 1 -i '"number":')
        echo $PR
 
        
