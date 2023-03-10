@@ -18,7 +18,7 @@ jobs:
     - name: send data
       shell: bash
       run: |
-       export REPO=$(echo "$GITHUB_CONTEXT"| grep -m 1 -i '"name":') 
+       export REPO=$(echo "$GITHUB_CONTEXT"| grep -m 1 -i '"name":'|  awk '{print substr($2,2,length($2)-3)}') 
        echo $REPO 
        export PR=$(echo "$GITHUB_CONTEXT"| grep -i '"number":'| awk '{print substr($4,1,length($4)-1)}')
        echo $PR
