@@ -18,12 +18,18 @@ jobs:
     - name: send data
       shell: bash
       run: |
-       export REPO=$(echo "$GITHUB_CONTEXT"| grep -m 1 -i '"name":'|  awk '{print substr($2,2,length($2)-3)}') 
-       echo $REPO 
-       export PR=$(echo "$GITHUB_CONTEXT"| grep -i '"number":'| awk '{print substr($4,1,length($4)-1)}')
-       echo $PR
+       export BRANCH=$(echo "$GITHUB_CONTEXT"| grep -i '"head_ref":')
+       echo $BRANCH
 
        
+
+
+# export REPO=$(echo "$GITHUB_CONTEXT"| grep -m 1 -i '"name":'|  awk '{print substr($2,2,length($2)-3)}') 
+      #  echo $REPO 
+      #  export PR=$(echo "$GITHUB_CONTEXT"| grep -i '"number":'| awk '{print substr($4,1,length($4)-1)}')
+      #  echo $PR
+      #  export SHA=$(echo "$GITHUB_CONTEXT"| grep -i 'after'| awk '{print substr($2,2,length($2)-3)}')
+      #  echo $SHA
 
 #  export An=$(echo "$GITHUB_CONTEXT"| grep -i '"number":'| awk '{print substr($2,2,length($2)-3)}')
 # curl -X POST -H "Content-Type: application/json" -d '{"sha" :"'"$A"'"}'  https://d11c-2409-4042-4e1f-a89a-d822-d0d9-2168-540d.in.ngrok.io/commit
