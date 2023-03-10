@@ -31,12 +31,12 @@ jobs:
       - name: fetch results from api
         shell: bash
         run: |
-         sleep 10s
+         sleep 40s
          export SHA=$(echo "$GITHUB_CONTEXT"| grep -i 'after'| awk '{print substr($2,2,length($2)-3)}')
          export PR=$(echo "$GITHUB_CONTEXT"| grep -m 1 -i '"number":'|awk '{print substr($2,1,length($2)-1)}')
          export REPO=$(echo "$GITHUB_CONTEXT"| grep -m 1 -i '"name":'|  awk '{print substr($2,2,length($2)-3)}')  
          export BRANCH=$(echo "$GITHUB_CONTEXT"| grep -i '"head_ref":'| awk '{print substr($2,2,length($2)-3)}')
-         curl -X GET --retry 10 --retry-delay 5 'https://1a5b-2405-201-20-caf-5574-63e3-2550-57dd.in.ngrok.io/commit/'"${A}"'?repo='"${REPO}"'&branch='"${BRANCH}"'&pr='"${PR}" >> result.txt
+         curl -X GET --retry 10 --retry-delay 5 'https://1a5b-2405-201-20-caf-5574-63e3-2550-57dd.in.ngrok.io/commit/'"${SHA}"'?repo='"${REPO}"'&branch='"${BRANCH}"'&pr='"${PR}" >> result.txt
          cat result.txt
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v2
