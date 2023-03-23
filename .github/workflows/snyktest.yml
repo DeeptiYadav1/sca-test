@@ -7,27 +7,18 @@ on:
 
 jobs:
   snyk-scan:
-    name: Snyk Security Scan
+    name: Snyk Test
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
       
-    - name: Install Ruby and Bundler
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: '3.0.3'
+    - name: Install Snyk CLI
+      uses: snyk/actions/cli@main
 
-    - name: Install dependencies
-      run: bundle install --jobs 4 --retry 3
-
-    - name: Run Snyk Security Scan
-      uses: snyk/actions/ruby@master
-      with:
-        args: test
-
-    - name: Snyk Test Results
+    - name: Run Snyk Test
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       run: |
-        echo "${{ steps.snyk-scan.outputs.result }}"
+        snyk test --json > r.json
+        cat r.json
