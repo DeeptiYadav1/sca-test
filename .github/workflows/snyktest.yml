@@ -13,12 +13,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
       
-    - name: Install Snyk CLI
-      uses: snyk/actions/setup-cli@v1
-
-    - name: Run Snyk Test
+    - name: Install Snyk using npm
+      run: npm install snyk
+      
+    - name: Run Snyk
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       run: |
-        snyk test --json > r.json
-        cat r.json
+       npx snyk test > r.txt
+       cat r.txt
