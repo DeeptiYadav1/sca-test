@@ -1,20 +1,33 @@
-name: Snyk Test
-on: push
+name: Snyk Security Scan
+
+on:
+  push:
+    branches:
+      - test-branch
+
 jobs:
-  security:
+  snyk-scan:
+    name: Snyk Security Scan
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@master
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Install Ruby and Bundler
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.0.3'
 
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/ruby@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          args: --sarif-file-output=snyk.sarif
+    - name: Install dependencies
+      run: bundle install --jobs 4 --retry 3
 
-      - name: Upload result to GitHub Code Scanning
-      - uses: github/codeql-action/upload-sarif@v2
-        with:
-          sarif_file: snyk.sarif
+    - name: Run Snyk Security Scan
+      uses: snyk/actions/ruby@master
+      with:
+        args: test
+
+    - name: Snyk Test Results
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      run: |
+        echo "${{ steps.snyk-scan.outputs.result }}"
