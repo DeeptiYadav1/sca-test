@@ -20,5 +20,5 @@ jobs:
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       run: |
-       npx snyk test > r.txt
+       npx snyk test --file=Gemfile > r.txt
        cat r.txt
