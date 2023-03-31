@@ -7,10 +7,20 @@ on:
 
 jobs:
   snyk-scan:
-    - uses: actions/checkout@v3
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/ruby@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          args: --severity-threshold=high
+    name: Snyk Test
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Install Snyk CLI
+      uses: snyk/actions@master
+      with:
+        args: install
+        
+    - name: Run Snyk Test
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      run: |
+        snyk test --file=Gemfile.lock > r.json
+        cat r.json
