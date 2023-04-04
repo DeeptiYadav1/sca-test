@@ -25,8 +25,8 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: test --file=Gemfile.lock --severity-threshold=high
+          args: test --file=Gemfile.lock --sarif-file-output=snyk.sarif
       - name: Upload Snyk Results to Code Scanning
-        uses: github/codeql-action/upload-sarif@v1
+        uses: github/codeql-action/upload-sarif@v2
         with:
-          sarif_file: reports/snyk/snyk-report.sarif
+          sarif_file: snyk.sarif
