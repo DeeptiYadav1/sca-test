@@ -28,6 +28,7 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         run: |
+          snyk auth $SNYK_TOKEN
           snyk test --file=Gemfile.lock >> results.txt
           cat results.txt
 
