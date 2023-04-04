@@ -21,8 +21,7 @@ jobs:
       #     gem install bundler
       #     bundle install
       - name: Snyk test
-        uses: snyk/actions/ruby@master
-        continue-on-error: true
+        uses: snyk/actions/cli@v1
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
