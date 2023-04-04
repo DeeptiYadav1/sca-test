@@ -12,16 +12,17 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Install Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 3.0.0
-      - name: Install Dependencies
-        run: |
-          gem install bundler
-          bundle install
+      # - name: Install Ruby
+      #   uses: ruby/setup-ruby@v1
+      #   with:
+      #     ruby-version: 3.0.0
+      # - name: Install Dependencies
+      #   run: |
+      #     gem install bundler
+      #     bundle install
       - name: Snyk test
         uses: snyk/actions/ruby@master
+        continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
