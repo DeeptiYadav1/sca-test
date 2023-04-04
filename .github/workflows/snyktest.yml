@@ -20,13 +20,15 @@ jobs:
       #   run: |
       #     gem install bundler
       #     bundle install
+      - name: Install Snyk CLI
+        run: |
+          apt-get install -y nodejs
+          npm install -g snyk
       - name: Snyk test
-        uses: snyk/actions/cli@v1
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          args: test --file=Gemfile.lock --sarif-file-output=snyk.sarif
-      - name: Upload Snyk Results to Code Scanning
-        uses: github/codeql-action/upload-sarif@v2
-        with:
-          sarif_file: snyk.sarif
+        run: |
+          snyk test --file=Gemfile.lock >> results.txt
+          cat results.txt
+
+
