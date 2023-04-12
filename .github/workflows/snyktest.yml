@@ -19,7 +19,7 @@ jobs:
           args: --json-file-output=snyk.json
 
       - name: Convert JSON to text
-        uses: stefanzweifel/json-to-txt-action@v1
+        uses: codex-team/json2txt-action@v1
         with:
           inputFile: 'snyk.json'
           outputFile: 'output.txt'
