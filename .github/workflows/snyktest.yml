@@ -19,10 +19,7 @@ jobs:
           args: --json-file-output=snyk.json
 
       - name: Convert JSON to text
-        uses: codex-team/json2txt-action@v1
-        with:
-          inputFile: 'snyk.json'
-          outputFile: 'output.txt'
+        run: cat snyk.json | jq -r '.' > output.txt
 
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v2
