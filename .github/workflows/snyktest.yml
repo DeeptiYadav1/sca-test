@@ -17,7 +17,7 @@ jobs:
         run: snyk auth ${{ secrets.SNYK_TOKEN }}
 
       - name: Run Snyk test
-        run: snyk test >> output.txt
+        run: snyk test --file=Gemfile.lock >> output.txt
 
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v2
