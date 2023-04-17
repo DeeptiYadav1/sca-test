@@ -10,18 +10,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Install Snyk CLI
-        run: npm install -g snyk
-
-      - name: Authenticate with Snyk
-        run: snyk auth ${{ secrets.SNYK_TOKEN }}
-
-      - name: Run Snyk test
-        run: snyk test --file=Gemfile.lock >> output.txt
-
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/ruby@master
+        continue-on-error: true # To make sure that SARIF upload gets called
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: -o snyk-results.txt
+      - #parse the results file
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v2
         with:
-          filePath: output.txt
+          filePath: snyk-results.txt
 
 
