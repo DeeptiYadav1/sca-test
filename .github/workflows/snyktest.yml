@@ -16,11 +16,11 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: -o snyk-results.txt
+          args: --json-file-output=snyk.json
       
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v2
         with:
-          filePath: snyk-results.txt
+          filePath: snyk.json
 
 
