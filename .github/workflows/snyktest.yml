@@ -1,0 +1,30 @@
+name: Snyk Scan
+
+on:
+  pull_request:
+    branches: [main, test-branch]
+    
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/ruby@master
+        continue-on-error: true # To make sure that SARIF upload gets called
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --json-file-output=snyk.json
+      - name: Parse Json
+        run: |
+         sudo apt-get install -y jq
+         jq -r '.vulnerabilities[] | {id, moduleName, title, description, severity, cvssScore, from, Url: .references[0].url, fixedIn}' snyk.json > output.txt
+         
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          filePath: output.txt
+
+

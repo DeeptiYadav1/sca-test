@@ -1,0 +1,43 @@
+name: Retry Get Results Request
+
+on:
+  workflow_dispatch:
+    inputs:
+      shavalue:
+        description: 'sha-value'
+        required: true
+        type: string
+      prnumber:
+        description: 'pr-number'
+        required: true
+        type: int
+
+  
+
+jobs:
+
+  fetchresults:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    - name: fetch results from api
+      shell: bash
+      env:
+          SHA: ${{ inputs.shavalue }}
+      run: |
+       sleep 5s
+       curl -X GET --retry 10 --retry-delay 5 'https://1a5b-2405-201-20-caf-5574-63e3-2550-57dd.in.ngrok.io/commit/'"${SHA}" >> result.txt
+       cat result.txt
+    - name: Comment PR
+      uses: thollander/actions-comment-pull-request@v2
+      with:
+        filePath: result.txt
+        pr_number: ${{ inputs.prnumber }}
+        
+
+
+
+
+    
