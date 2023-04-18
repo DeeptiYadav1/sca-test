@@ -20,7 +20,7 @@ jobs:
       - name: Parse Json
         run: |
          sudo apt-get install -y jq
-         jq -r '.vulnerabilities[] | {id, moduleName, title, fixedIn, severity, cvssScore, from, thirdUrl: .references[0].url}' snyk.json > output.txt
+         jq -r '.vulnerabilities[] | {id, moduleName, title, description, severity, cvssScore, from, Url: .references[0].url, fixedIn}' snyk.json > output.txt
          
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v2
